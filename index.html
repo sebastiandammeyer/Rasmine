@@ -5,36 +5,33 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Rasmines ønskeliste</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Fraunces:opsz,wght@9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&family=Fraunces:opsz,wght@9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #FBEFE6;
-    --bg2: #F6DCCB;
-    --card: #FFFCF8;
+    --bg: #123A2A;
+    --bg2: #0C2A1E;
+    --card: #FFFCF6;
     --ink: #2B211C;
     --muted: #7D6F63;
-    --line: #EFE2D6;
-    --red: #C8102E;
-    --red-dark: #9E0B23;
-    --head: #7A1020;
+    --line: #EADFD0;
+    --red: #B3261E;
+    --red-dark: #8E1C16;
+    --cream: #FFF6E4;
     --gold: #E8B44F;
-    --sky1: #FFE3D3;
-    --sky2: #FFC9C0;
-    --thumb: #F7EEE6;
+    --sky1: #0B1F2E;
+    --sky2: #133B3A;
+    --thumb: #F4EDE2;
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #2A1418;
-      --bg2: #1C0D10;
+      --bg: #0E2C20;
+      --bg2: #081C14;
       --card: #1F1A17;
       --ink: #F4ECE2;
       --muted: #A99B8E;
       --line: #352D28;
-      --red: #E2475C;
-      --red-dark: #F07A88;
-      --head: #FFD9D0;
-      --sky1: #3A1A20;
-      --sky2: #5A2430;
+      --red: #E2574C;
+      --red-dark: #F07A70;
       --thumb: #2A2420;
     }
   }
@@ -44,8 +41,8 @@
     margin: 0;
     background-color: var(--bg);
     background-image:
-      radial-gradient(rgba(200,16,46,.08) 2px, transparent 2.1px),
-      radial-gradient(rgba(232,180,79,.12) 1.5px, transparent 1.6px),
+      radial-gradient(rgba(255,255,255,.07) 1.5px, transparent 1.6px),
+      radial-gradient(rgba(255,255,255,.05) 1px, transparent 1.1px),
       linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
     background-size: 46px 46px, 23px 23px, 100% 100%;
     background-position: 0 0, 11px 13px, 0 0;
@@ -55,61 +52,75 @@
     line-height: 1.5;
   }
 
-  /* ---------- Toppen med flagranke, balloner og Rasmine ---------- */
-  .top {
+  /* ---------- Himmel med kane ---------- */
+  .himmel {
     position: relative;
     overflow: hidden;
     background: linear-gradient(180deg, var(--sky1) 0%, var(--sky2) 100%);
-    color: var(--head);
+    color: #FFF8EC;
     text-align: center;
-    padding: 70px 16px 0;
+    padding: 72px 16px 96px;
   }
-  .ranke { position: absolute; left: 0; right: 0; top: 0; width: 100%; height: 70px; }
-  .ranke .flag { transform-box: fill-box; transform-origin: top center; animation: vift 3s ease-in-out infinite; }
-  @keyframes vift { 50% { transform: rotate(4deg); } }
-
-  .ballon {
-    position: absolute; bottom: -40px; width: 70px; height: auto;
-    animation: op 9s ease-in-out infinite;
+  .stjerner { position: absolute; inset: 0; pointer-events: none; }
+  .stjerner i {
+    position: absolute; width: 2px; height: 2px; border-radius: 50%;
+    background: #fff; opacity: .7;
+    animation: blink 4s ease-in-out infinite;
+  }
+  @keyframes blink { 50% { opacity: .2; } }
+  .maane {
+    position: absolute; top: 28px; right: 9%;
+    width: 54px; height: 54px; border-radius: 50%;
+    background: #FFF3D6;
+    box-shadow: 0 0 40px 8px rgba(255, 236, 190, .35);
+  }
+  .kane {
+    position: absolute; top: 34px; left: 0;
+    width: 220px; height: auto;
+    opacity: .9;
+    animation: flyv 38s linear infinite;
     pointer-events: none;
   }
-  @keyframes op {
-    0%, 100% { transform: translateY(0) rotate(-3deg); }
-    50%      { transform: translateY(-26px) rotate(3deg); }
+  @keyframes flyv {
+    0%   { transform: translate(-260px, 30px); }
+    25%  { transform: translate(25vw, 0px); }
+    50%  { transform: translate(55vw, 22px); }
+    75%  { transform: translate(85vw, -4px); }
+    100% { transform: translate(calc(100vw + 40px), 18px); }
   }
-  .top h1 {
+  .himmel h1 {
     position: relative;
-    font-family: Pacifico, Georgia, serif;
-    font-weight: 400;
-    font-size: clamp(40px, 9vw, 70px);
-    line-height: 1.15;
-    margin: 30px 0 6px;
-    text-shadow: 0 2px 0 #fff;
+    font-family: "Mountains of Christmas", Georgia, serif;
+    font-weight: 700;
+    font-size: clamp(42px, 9vw, 72px);
+    line-height: 1.05;
+    margin: 40px 0 10px;
+    text-shadow: 0 2px 12px rgba(0,0,0,.35);
   }
-  @media (prefers-color-scheme: dark) { .top h1 { text-shadow: 0 2px 12px rgba(0,0,0,.4); } }
-  .top p { position: relative; margin: 0 auto; max-width: 520px; opacity: .85; }
+  .himmel p { position: relative; margin: 0 auto; max-width: 520px; opacity: .85; }
   .portraet {
-    position: relative; display: block;
-    width: min(300px, 72vw); height: auto;
-    margin: 26px auto -34px;
-    filter: brightness(1.08) saturate(1.05) drop-shadow(0 10px 18px rgba(80, 20, 20, .25));
+    position: relative; z-index: 1; display: block;
+    width: min(280px, 70vw); height: auto;
+    margin: 26px auto -70px;
+    filter: brightness(1.08) drop-shadow(0 0 30px rgba(255, 236, 190, .25));
   }
-  .kant {
-    position: relative; display: block;
-    width: calc(100% + 32px); height: 40px;
-    margin: 0 -16px -1px;
+  .bakke {
+    position: absolute; left: -5%; right: -5%; bottom: -1px; height: 60px;
+    background: var(--bg);
+    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+    z-index: 2;
   }
-
-  .konfetti { position: fixed; inset: 0; pointer-events: none; z-index: 5; }
-  .konfetti i {
-    position: absolute; top: -12px; width: 7px; height: 12px; border-radius: 2px;
-    opacity: .8;
+  .sne { position: fixed; inset: 0; pointer-events: none; z-index: 5; }
+  .sne i {
+    position: absolute; top: -10px; border-radius: 50%;
+    background: #fff; opacity: .55;
     animation: fald linear infinite;
   }
-  @keyframes fald { to { transform: translate(40px, 105vh) rotate(720deg); } }
+  @keyframes fald { to { transform: translate(30px, 105vh); } }
   @media (prefers-reduced-motion: reduce) {
-    .ballon, .konfetti, .ranke .flag { animation: none; }
-    .konfetti { display: none; }
+    .kane, .sne, .stjerner i { animation: none; }
+    .kane { transform: translate(8vw, 0); }
+    .sne { display: none; }
   }
 
   /* ---------- Liste ---------- */
@@ -121,9 +132,10 @@
     font-size: 26px;
     margin: 0 0 14px;
     display: flex; align-items: center; gap: 10px;
-    color: var(--head);
+    color: var(--cream);
   }
-  h2::before { content: "🎈"; font-size: 20px; }
+  h2::before { content: "✦"; color: var(--gold); font-size: 18px; }
+  table { box-shadow: 0 10px 30px rgba(0,0,0,.25); }
 
   table {
     width: 100%;
@@ -131,10 +143,8 @@
     border-spacing: 0;
     background: var(--card);
     border: 1px solid var(--line);
-    border-top: 4px solid var(--red);
     border-radius: 14px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(120, 30, 30, .12);
   }
   th {
     text-align: left;
@@ -148,6 +158,7 @@
   }
   td { padding: 14px 16px; border-bottom: 1px solid var(--line); vertical-align: middle; }
   tr:last-child td { border-bottom: 0; }
+  .knipex table { border-top: 4px solid var(--red); }
   .billede { width: 112px; }
   .billede img, .billede .tom {
     display: block; width: 88px; height: 88px;
@@ -197,69 +208,60 @@
     tr:last-child { border-bottom: 0; }
     td { padding: 0; border: 0; }
     .billede { width: auto; grid-row: span 2; }
+    .billede img, .billede .tom { width: 88px; height: 88px; }
     .link { width: auto; }
     .link a { display: inline-block; margin: 6px 6px 0 0; }
     .link .ingen { text-align: left; }
-    .ballon { width: 48px; }
   }
 
   .hilsen {
     text-align: center; margin: 64px 0 0;
-    font-family: Pacifico, Georgia, serif;
-    font-size: 34px; color: var(--head);
+    font-family: "Mountains of Christmas", Georgia, serif;
+    font-size: 34px; color: var(--cream);
   }
-  .fest { display: block; width: 100%; height: auto; margin-top: -10px; }
-  .flamme { transform-box: fill-box; transform-origin: bottom center; animation: flakker .9s ease-in-out infinite alternate; }
-  @keyframes flakker { to { transform: scale(.85, 1.12); } }
-  @media (prefers-reduced-motion: reduce) { .flamme { animation: none; } }
+  .landskab { display: block; width: 100%; height: auto; margin-top: -10px; }
+  .vindue { animation: lys 5s ease-in-out infinite; }
+  @keyframes lys { 50% { opacity: .75; } }
+  @media (prefers-reduced-motion: reduce) { .vindue { animation: none; } }
 </style>
 </head>
 <body>
 
-<div class="konfetti" aria-hidden="true"></div>
+<div class="sne" aria-hidden="true"></div>
 
-<header class="top">
-  <!-- Flagranke med Dannebrog -->
-  <svg class="ranke" viewBox="0 0 1200 70" aria-hidden="true">
-    <defs>
-      <g id="dk">
-        <path d="M-16 0 h32 l-16 34 Z" fill="#C8102E"/>
-        <path d="M-5 0 h5 v34 h-5 Z M-16 11 h32 v5 h-32 Z" fill="#fff" clip-path="url(#vimpel)"/>
-      </g>
-      <clipPath id="vimpel" clipPathUnits="userSpaceOnUse"><path d="M-16 0 h32 l-16 34 Z"/></clipPath>
-    </defs>
-    <path class="snor" d="M0 8 Q 600 46 1200 8" stroke="#8A6A55" stroke-width="2" fill="none"/>
-  </svg>
+<header class="himmel">
+  <div class="stjerner" aria-hidden="true"></div>
+  <div class="maane" aria-hidden="true"></div>
 
-  <svg class="ballon" style="left:4%;animation-delay:-2s" viewBox="0 0 60 140" aria-hidden="true">
-    <path d="M30 70 q-6 20 4 40 q-8 14 0 30" stroke="#8A6A55" stroke-width="1.2" fill="none"/>
-    <ellipse cx="30" cy="34" rx="26" ry="32" fill="#C8102E"/><path d="M26 65 h8 l-4 6 Z" fill="#C8102E"/>
-    <ellipse cx="20" cy="22" rx="6" ry="10" fill="#fff" opacity=".35"/>
-  </svg>
-  <svg class="ballon" style="left:14%;width:56px;animation-delay:-5s;bottom:10px" viewBox="0 0 60 140" aria-hidden="true">
-    <path d="M30 70 q-6 20 4 40 q-8 14 0 30" stroke="#8A6A55" stroke-width="1.2" fill="none"/>
-    <ellipse cx="30" cy="34" rx="26" ry="32" fill="#FFFFFF"/><path d="M26 65 h8 l-4 6 Z" fill="#FFFFFF"/>
-    <ellipse cx="20" cy="22" rx="6" ry="10" fill="#F6DCCB" opacity=".7"/>
-  </svg>
-  <svg class="ballon" style="right:5%;animation-delay:-1s" viewBox="0 0 60 140" aria-hidden="true">
-    <path d="M30 70 q6 20 -4 40 q8 14 0 30" stroke="#8A6A55" stroke-width="1.2" fill="none"/>
-    <ellipse cx="30" cy="34" rx="26" ry="32" fill="#E8B44F"/><path d="M26 65 h8 l-4 6 Z" fill="#E8B44F"/>
-    <ellipse cx="20" cy="22" rx="6" ry="10" fill="#fff" opacity=".35"/>
-  </svg>
-  <svg class="ballon" style="right:15%;width:58px;animation-delay:-6s;bottom:16px" viewBox="0 0 60 140" aria-hidden="true">
-    <path d="M30 70 q6 20 -4 40 q8 14 0 30" stroke="#8A6A55" stroke-width="1.2" fill="none"/>
-    <ellipse cx="30" cy="34" rx="26" ry="32" fill="#C8102E"/><path d="M26 65 h8 l-4 6 Z" fill="#C8102E"/>
-    <ellipse cx="20" cy="22" rx="6" ry="10" fill="#fff" opacity=".35"/>
+  <!-- Julemanden i kane med rensdyr -->
+  <svg class="kane" viewBox="0 0 440 110" aria-hidden="true" fill="#FFF3D6">
+    <!-- tøjler -->
+    <path d="M150 58 C 200 50, 250 52, 300 46 C 330 42, 360 44, 392 40" stroke="#FFF3D6" stroke-width="1.5" fill="none" opacity=".7"/>
+    <!-- rensdyr (tre ens, forskudt) -->
+    <g id="ren">
+      <path d="M0 40 q4 -10 16 -10 h26 q8 0 12 -8 l6 -10 l3 2 l-4 9 l7 -6 l2 3 l-8 8 q2 6 -4 10 l-4 3 q-2 4 -8 4 h-24 l4 18 h-4 l-6 -15 l-6 15 h-4 l2 -18 q-10 -2 -10 -10 z"/>
+      <circle cx="66" cy="20" r="2" fill="#E2574C"/>
+    </g>
+    <use href="#ren" x="250" y="10"/>
+    <use href="#ren" x="315" y="4"/>
+    <use href="#ren" x="380" y="-2"/>
+    <!-- kane -->
+    <path d="M40 60 h110 q8 0 8 -10 v-10 h8 v14 q0 18 -18 18 h-96 q-12 0 -16 -10 z"/>
+    <path d="M18 84 h130 q14 0 18 -10" stroke="#FFF3D6" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <path d="M46 72 v12 M130 72 v12" stroke="#FFF3D6" stroke-width="3"/>
+    <!-- julemand -->
+    <circle cx="96" cy="26" r="11"/>
+    <path d="M80 60 q0 -26 16 -26 q16 0 16 26 z"/>
+    <path d="M86 18 q8 -16 22 -8 l8 10 l-6 2 l-6 -6 q-6 -2 -12 4 z"/>
+    <circle cx="118" cy="22" r="3.5"/>
+    <!-- gavesæk -->
+    <path d="M44 60 q-6 -22 10 -30 q6 -3 6 -8 l6 0 q0 5 6 8 q14 8 10 30 z"/>
   </svg>
 
   <h1>Rasmines ønskeliste</h1>
-  <p>Fødselsdag 🎂 · Linkene viser hvad det er. Find det gerne billigere et andet sted.</p>
-
+  <p>Jul 2026 · Linkene viser hvad det er. Find det gerne billigere et andet sted.</p>
   <img class="portraet" src="rasmine.png" alt="Rasmine som lille, pakket ind i et håndklæde med armene over hovedet">
-
-  <svg class="kant" viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true">
-    <path d="M0 40 V20 Q 30 0 60 20 T 120 20 T 180 20 T 240 20 T 300 20 T 360 20 T 420 20 T 480 20 T 540 20 T 600 20 T 660 20 T 720 20 T 780 20 T 840 20 T 900 20 T 960 20 T 1020 20 T 1080 20 T 1140 20 T 1200 20 V40 Z" fill="var(--bg)"/>
-  </svg>
+  <div class="bakke" aria-hidden="true"></div>
 </header>
 
 <main>
@@ -279,7 +281,7 @@
           <td class="link"><a href="#" target="_blank" rel="noopener">Se varen ↗</a></td>
         </tr>
         <tr>
-          <td class="billede"><div class="tom">💐</div></td>
+          <td class="billede"><div class="tom">🎄</div></td>
           <td>
             <div class="navn">Ønske 2</div>
             <span class="model">Model / størrelse</span>
@@ -288,109 +290,87 @@
         </tr>
         <tr>
           <td class="billede"><div class="tom">📚</div></td>
-          <td>
-            <div class="navn">Ønske 3</div>
-          </td>
+          <td><div class="navn">Ønske 3</div></td>
           <td class="link"><span class="ingen">Intet link</span></td>
         </tr>
       </tbody>
     </table>
   </section>
 
-  <p class="hilsen">Tillykke med fødselsdagen!</p>
+  <p class="hilsen">Glædelig jul!</p>
 </main>
 
-<!-- Fødselsdagsbord med kage, gaver og flag -->
-<svg class="fest" viewBox="0 0 1200 260" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+<!-- Nisselandskab -->
+<svg class="landskab" viewBox="0 0 1200 300" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
   <defs>
-    <g id="flagstang">
-      <rect x="0" y="0" width="3" height="90" fill="#8A6A55"/>
-      <circle cx="1.5" cy="-2" r="4" fill="#E8B44F"/>
-      <rect x="3" y="4" width="46" height="32" fill="#C8102E"/>
-      <rect x="3" y="17" width="46" height="6" fill="#fff"/>
-      <rect x="17" y="4" width="6" height="32" fill="#fff"/>
+    <g id="gran">
+      <path d="M0 0 L-26 40 h12 L-34 72 h14 L-42 108 h84 L20 72 h14 L14 40 h12 Z" fill="#1E5A3C"/>
+      <path d="M0 0 L-14 22 q14 6 28 0 Z M-20 40 q20 8 40 0 l-6 -8 q-14 5 -28 0 Z M-28 72 q28 9 56 0 l-6 -8 q-22 6 -44 0 Z" fill="#F5F8FA"/>
+      <rect x="-5" y="108" width="10" height="14" fill="#4A2F22"/>
     </g>
-    <g id="gave">
-      <rect x="0" y="0" width="60" height="46" rx="3"/>
-      <rect x="26" y="0" width="8" height="46" fill="#E8B44F"/>
-      <rect x="0" y="16" width="60" height="7" fill="#E8B44F"/>
-      <path d="M30 0 q-18 -16 -22 -4 q4 6 22 4 q18 2 22 -4 q-4 -12 -22 4 Z" fill="#E8B44F"/>
+    <g id="nisse">
+      <path d="M-14 0 h28 l-4 -30 h-20 Z" fill="#7A2A20"/>
+      <path d="M-12 -30 q12 -8 24 0 l-2 6 h-20 Z" fill="#F5F8FA"/>
+      <circle cx="0" cy="-40" r="10" fill="#F2C9A8"/>
+      <path d="M-10 -38 q10 22 20 0 q-10 6 -20 0 Z" fill="#FFFFFF"/>
+      <path d="M-12 -44 Q2 -46 12 -44 L-2 -82 Z" fill="#C8302A"/>
+      <path d="M-13 -46 q13 5 26 0 v5 q-13 5 -26 0 Z" fill="#FFFFFF"/>
+      <circle cx="-2" cy="-82" r="4" fill="#FFFFFF"/>
+    </g>
+    <g id="hus">
+      <rect x="0" y="0" width="90" height="62" fill="#9E2B23"/>
+      <path d="M-10 4 L45 -38 L100 4 Z" fill="#5B1E18"/>
+      <path d="M-12 6 L45 -40 L102 6 L96 10 L45 -30 L-6 10 Z" fill="#FFFFFF"/>
+      <rect class="vindue" x="14" y="18" width="20" height="18" fill="#FFD27A"/>
+      <rect x="56" y="26" width="20" height="36" fill="#3E1410"/>
+      <path d="M24 18 v18 M14 27 h20" stroke="#9E2B23" stroke-width="2"/>
     </g>
   </defs>
-  <!-- bord -->
-  <path d="M0 200 H1200 V260 H0 Z" fill="#E7C9B4"/>
-  <path d="M0 200 H1200" stroke="#D2AE95" stroke-width="4"/>
-  <!-- flag -->
-  <use href="#flagstang" x="150" y="110"/>
-  <use href="#flagstang" x="1010" y="110"/>
-  <use href="#flagstang" x="420" y="120"/>
-  <!-- gaver -->
-  <use href="#gave" x="220" y="154" fill="#C8102E"/>
-  <use href="#gave" x="290" y="166" fill="#FFFFFF" transform="translate(290 166) scale(.75) translate(-290 -166)"/>
-  <use href="#gave" x="860" y="154" fill="#2E7D4F"/>
-  <use href="#gave" x="930" y="164" fill="#C8102E" transform="translate(930 164) scale(.8) translate(-930 -164)"/>
-  <!-- kage -->
-  <g transform="translate(520 100)">
-    <rect x="0" y="50" width="160" height="50" rx="6" fill="#F6E1C8"/>
-    <rect x="20" y="10" width="120" height="44" rx="6" fill="#FFFFFF"/>
-    <path d="M20 22 q10 12 20 0 q10 12 20 0 q10 12 20 0 q10 12 20 0 q10 12 20 0 q10 12 20 0 V10 H20 Z" fill="#C8102E"/>
-    <path d="M0 62 q10 12 20 0 q10 12 20 0 q10 12 20 0 q10 12 20 0 q10 12 20 0 q10 12 20 0 q10 12 20 0 q10 12 20 0 V50 H0 Z" fill="#FFFFFF"/>
-    <circle cx="40" cy="80" r="4" fill="#E8B44F"/><circle cx="80" cy="84" r="4" fill="#C8102E"/><circle cx="120" cy="80" r="4" fill="#E8B44F"/>
-    <!-- lys -->
-    <g>
-      <rect x="44" y="-14" width="6" height="24" fill="#C8102E"/>
-      <rect x="77" y="-18" width="6" height="28" fill="#FFFFFF" stroke="#C8102E" stroke-width="1"/>
-      <rect x="110" y="-14" width="6" height="24" fill="#C8102E"/>
-      <path class="flamme" d="M47 -28 q-6 8 0 12 q6 -4 0 -12 Z" fill="#FFB000"/>
-      <path class="flamme" d="M80 -32 q-6 8 0 12 q6 -4 0 -12 Z" fill="#FFB000"/>
-      <path class="flamme" d="M113 -28 q-6 8 0 12 q6 -4 0 -12 Z" fill="#FFB000"/>
-    </g>
-    <!-- lille flag i kagen -->
-    <rect x="140" y="-30" width="2" height="44" fill="#8A6A55"/>
-    <rect x="142" y="-30" width="22" height="15" fill="#C8102E"/>
-    <rect x="142" y="-24" width="22" height="3" fill="#fff"/>
-    <rect x="148" y="-30" width="3" height="15" fill="#fff"/>
+  <!-- bagerste bakker -->
+  <path d="M0 170 Q 200 110 420 150 T 820 140 T 1200 130 V300 H0 Z" fill="#D9E6EE"/>
+  <use href="#gran" x="120" y="96" transform="scale(1)"/>
+  <use href="#gran" x="980" y="80"/>
+  <use href="#gran" x="1080" y="96"/>
+  <use href="#hus" x="560" y="120"/>
+  <!-- forreste sne -->
+  <path d="M0 220 Q 260 170 560 210 T 1200 200 V300 H0 Z" fill="#FFFFFF"/>
+  <use href="#gran" x="40" y="150"/>
+  <use href="#gran" x="250" y="160" />
+  <use href="#hus" x="760" y="168"/>
+  <use href="#gran" x="1150" y="150"/>
+  <use href="#nisse" x="380" y="250"/>
+  <use href="#nisse" x="420" y="256" transform="translate(840 0) scale(-1 1) translate(0 0)"/>
+  <use href="#nisse" x="690" y="246"/>
+  <!-- slæde med gaver -->
+  <g transform="translate(470 238)">
+    <path d="M0 0 h56 v10 h-56 Z" fill="#7A4B2C"/>
+    <path d="M-6 16 h70 q10 0 12 -10" stroke="#5A3820" stroke-width="3" fill="none"/>
+    <rect x="6" y="-16" width="18" height="16" fill="#C8302A"/>
+    <rect x="28" y="-22" width="20" height="22" fill="#2E7D4F"/>
+    <path d="M15 -16 v16 M38 -22 v22" stroke="#E8B44F" stroke-width="3"/>
   </g>
 </svg>
 
 <script>
-  // Dannebrog-vimpler på ranken (følger buen, tegnes i skærmens bredde så de ikke strækkes)
-  const r = document.querySelector('.ranke');
-  const ns = 'http://www.w3.org/2000/svg';
-  function tegnRanke() {
-    const W = r.clientWidth || 1200;
-    r.setAttribute('viewBox', `0 0 ${W} 70`);
-    r.querySelector('.snor').setAttribute('d', `M0 8 Q ${W / 2} 46 ${W} 8`);
-    r.querySelectorAll('g.v').forEach(g => g.remove());
-    const n = Math.max(8, Math.round(W / 52));
-    for (let i = 0; i < n; i++) {
-      const t = (i + 0.5) / n;
-      const x = t * W;
-      const y = 8 + 76 * t * (1 - t);
-      const g = document.createElementNS(ns, 'g');
-      g.setAttribute('class', 'v');
-      g.setAttribute('transform', `translate(${x} ${y})`);
-      const u = document.createElementNS(ns, 'use');
-      u.setAttribute('href', '#dk');
-      u.setAttribute('class', 'flag');
-      u.style.animationDelay = (-Math.random() * 3) + 's';
-      g.appendChild(u);
-      r.appendChild(g);
-    }
+  // Stjerner på himlen
+  const s = document.querySelector('.stjerner');
+  for (let i = 0; i < 45; i++) {
+    const e = document.createElement('i');
+    e.style.left = Math.random() * 100 + '%';
+    e.style.top = Math.random() * 70 + '%';
+    e.style.animationDelay = (Math.random() * 4) + 's';
+    s.appendChild(e);
   }
-  tegnRanke();
-  addEventListener('resize', tegnRanke);
-  // Konfetti i rød, hvid og guld
-  const k = document.querySelector('.konfetti');
-  const farver = ['#C8102E', '#FFFFFF', '#E8B44F', '#C8102E'];
-  for (let i = 0; i < 30; i++) {
+  // Stille snefald
+  const sne = document.querySelector('.sne');
+  for (let i = 0; i < 28; i++) {
     const f = document.createElement('i');
-    f.style.background = farver[i % farver.length];
+    const size = 2 + Math.random() * 4;
+    f.style.width = f.style.height = size + 'px';
     f.style.left = Math.random() * 100 + '%';
-    f.style.animationDuration = (12 + Math.random() * 14) + 's';
-    f.style.animationDelay = (-Math.random() * 26) + 's';
-    if (i % 4 === 1) f.style.boxShadow = '0 0 0 1px rgba(0,0,0,.06)';
-    k.appendChild(f);
+    f.style.animationDuration = (14 + Math.random() * 16) + 's';
+    f.style.animationDelay = (-Math.random() * 30) + 's';
+    sne.appendChild(f);
   }
 </script>
 </body>
